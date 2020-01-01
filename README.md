@@ -1,2 +1,5 @@
 # Student-Fee-Info-System-Java-Mysql
-Download https://github.com/macaanto14/Student-Fee-Info-System-Java-Mysql.git
+
+1) Import sql file (peace.sql) into mysql database
+2) Import the download git repo to netbeans
+3) Run
