@@ -1,0 +1,686 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package peaceprivate;
+
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
+import java.awt.Image;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Properties;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import peaceprivate.MainHomePage;
+/**
+ *
+ * @author Omar
+ */
+public class Login extends javax.swing.JFrame {
+Connection conn=null;
+ResultSet rs=null;
+PreparedStatement pst=null;
+String url = "jdbc:mysql://localhost:3306/peace";
+
+    /**
+     * Creates new form Login
+     */
+    MainHomePage hp;
+    public Login() {
+        initComponents();
+        conn=javaconnect.ConnecrDb();
+        comboBox();
+        forgetPass_Panel.setVisible(false);
+        txt_uname_f.setEnabled(false);
+        txt_Post.setEnabled(false);
+        security_qusetion_txt.setEnabled(false);
+        txt_answer.setEnabled(false);
+        your_Pass.setEnabled(false);
+        btn_Srch.setEnabled(false);
+        btn_retrieve.setEnabled(false);
+        
+        Login_UserName.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                //To change body of generated methods, choose Tools | Templates.
+                if(Login_UserName.getText().equalsIgnoreCase("User Name")){
+                    Login_UserName.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(Login_UserName.getText().equalsIgnoreCase("")){
+                    Login_UserName.setText("User Name");
+                } //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        //
+        Login_Password.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(Login_Password.getText().equalsIgnoreCase("Password")){
+                    Login_Password.setText("");
+                }
+                //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                 if(Login_Password.getText().equals("")){
+                    Login_Password.setText("Password");
+                } //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        
+      txt_uname_f.addFocusListener(new FocusListener(){
+
+            @Override
+            public void focusGained(FocusEvent e) {
+               
+                if(txt_uname_f.getText().equalsIgnoreCase("USERNAME")){
+                    txt_uname_f.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                
+                if(txt_uname_f.getText().equals("")){
+                    txt_uname_f.setText("USERNAME");
+                } //T
+            }
+      });
+        
+       txt_answer.addFocusListener(new FocusListener(){
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                
+                if(txt_answer.getText().equalsIgnoreCase("Answer")){
+                   txt_answer.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                
+                if(txt_answer.getText().equals("")){
+                   txt_answer.setText("Answer");
+                } //T
+            }
+           
+       });
+        your_Pass.addFocusListener(new FocusListener(){
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                
+                if(txt_answer.getText().equalsIgnoreCase("Waite For Your Password To See")){
+                   txt_answer.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                
+                if(txt_answer.getText().equals("")){
+                   txt_answer.setText("Waite For Your Password To See");
+                } //T
+            }
+           
+       });
+    }
+     public ImageIcon ResizedImage(byte [] path){
+        
+        ImageIcon image1=new ImageIcon(path);
+        Image img=image1.getImage();
+         
+        ImageIcon Imagedone=new ImageIcon(img);
+     return Imagedone;
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        Panel_for_Main_Login = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        Login_UserName = new javax.swing.JTextField();
+        Login_Password = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        Login_btn = new javax.swing.JButton();
+        txt_combo = new javax.swing.JComboBox<>();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        label_for_logo = new javax.swing.JLabel();
+        forgetPass_Panel = new javax.swing.JPanel();
+        txt_uname_f = new javax.swing.JTextField();
+        btn_Srch = new javax.swing.JButton();
+        txt_Post = new javax.swing.JTextField();
+        security_qusetion_txt = new javax.swing.JTextField();
+        txt_answer = new javax.swing.JTextField();
+        btn_retrieve = new javax.swing.JButton();
+        your_Pass = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+
+        jButton1.setText("jButton1");
+
+        jLabel4.setText("jLabel4");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Panel_for_Main_Login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Login");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 188, 78));
+
+        Login_UserName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Login_UserName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Login_UserName.setText("User Name");
+        jPanel1.add(Login_UserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 210, 30));
+
+        Login_Password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Login_Password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Login_Password.setText("password");
+        Login_Password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Login_PasswordActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Login_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 212, 213, 30));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/peaceprivate/images/user_24px.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 30, 40));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/peaceprivate/images/password1_30px.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 30, 30));
+
+        Login_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Login_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/peaceprivate/images/icons8_login_rounded_right_32.png"))); // NOI18N
+        Login_btn.setText("Login");
+        Login_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Login_btnActionPerformed(evt);
+            }
+        });
+        Login_btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Login_btnKeyPressed(evt);
+            }
+        });
+        jPanel1.add(Login_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 178, 50));
+
+        txt_combo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Who are you?" }));
+        txt_combo.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                txt_comboPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        txt_combo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_comboMouseClicked(evt);
+            }
+        });
+        txt_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_comboActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 210, 40));
+        jPanel1.add(jSplitPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 10, 250));
+
+        label_for_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_for_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/peaceprivate/images/peace private logo last.jpg"))); // NOI18N
+        jPanel1.add(label_for_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 90));
+
+        forgetPass_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forget Password", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
+        forgetPass_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txt_uname_f.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_uname_f.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_uname_f.setText("USERNAME");
+        txt_uname_f.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_uname_fActionPerformed(evt);
+            }
+        });
+        forgetPass_Panel.add(txt_uname_f, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 180, -1));
+
+        btn_Srch.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Srch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_Srch.setForeground(new java.awt.Color(102, 0, 0));
+        btn_Srch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/peaceprivate/images/icons8_search_filled_32.png"))); // NOI18N
+        btn_Srch.setText("Search");
+        btn_Srch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SrchActionPerformed(evt);
+            }
+        });
+        forgetPass_Panel.add(btn_Srch, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+
+        txt_Post.setEditable(false);
+        txt_Post.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_Post.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        forgetPass_Panel.add(txt_Post, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 180, -1));
+
+        security_qusetion_txt.setEditable(false);
+        security_qusetion_txt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        security_qusetion_txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        security_qusetion_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                security_qusetion_txtActionPerformed(evt);
+            }
+        });
+        forgetPass_Panel.add(security_qusetion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 180, 20));
+
+        txt_answer.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txt_answer.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_answer.setText("Answer");
+        txt_answer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_answerActionPerformed(evt);
+            }
+        });
+        forgetPass_Panel.add(txt_answer, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 180, -1));
+
+        btn_retrieve.setBackground(new java.awt.Color(255, 255, 255));
+        btn_retrieve.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_retrieve.setForeground(new java.awt.Color(102, 0, 0));
+        btn_retrieve.setIcon(new javax.swing.ImageIcon(getClass().getResource("/peaceprivate/images/icons8_import_32.png"))); // NOI18N
+        btn_retrieve.setText("Reterive");
+        btn_retrieve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_retrieveActionPerformed(evt);
+            }
+        });
+        forgetPass_Panel.add(btn_retrieve, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+
+        your_Pass.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        your_Pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        your_Pass.setText("Waite For Your Password To See");
+        forgetPass_Panel.add(your_Pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 200, -1));
+
+        jPanel1.add(forgetPass_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 320, 260));
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Forget Pass");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel5MousePressed(evt);
+            }
+        });
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 100, -1));
+
+        Panel_for_Main_Login.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 770, 370));
+
+        getContentPane().add(Panel_for_Main_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 820, 440));
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void Login_PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_PasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Login_PasswordActionPerformed
+
+    private void Login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_btnActionPerformed
+        // TODO add your handling code here:
+        String Choise =(String) txt_combo.getSelectedItem();
+        String UName=Login_UserName.getText();
+        String Pswd=Login_Password.getText();
+        
+           
+        if(Login_UserName.getText().equalsIgnoreCase("") && Pswd.equalsIgnoreCase("")  && !Choise.equalsIgnoreCase("guest")){
+            
+            JOptionPane.showMessageDialog(null,"Enter Username or Password", "Access Denied",JOptionPane.ERROR_MESSAGE);
+            
+        }
+         // Priviledge for Admin
+        else if(Choise.equalsIgnoreCase("Admin")){
+       String sql="SELECT * FROM  `user accounts` WHERE  `USERNAME` LIKE  '"+UName+"' AND `POSITION` LIKE  'Admin' AND  `Password` =  '"+Pswd+"'";
+      
+           try { 
+            Connection con=(Connection) DriverManager.getConnection(url,"root","");
+            PreparedStatement pst=con.prepareStatement(sql);
+            ResultSet rs=pst.executeQuery();
+            if(rs.next()){
+               byte[] Image=rs.getBytes("IMAGE");
+               String name=rs.getString("USERNAME");
+               String pos=rs.getString("POSITION");
+              dispose();
+           
+            
+            MainHomePage m = new MainHomePage(Image,name,pos);
+            m.RegStudent.setEnabled(true);
+            m.paymentButtonHome.setEnabled(true);
+            m.Generate_btn_in_Report.setEnabled(true);
+            m.Admin_Home.setEnabled(true);
+            m.profileButton.setEnabled(true);
+            m.auditButton.setEnabled(true);
+            m.backupButton.setEnabled(true);
+            m.aboutButton.setEnabled(true);
+            m.Print_btn_in_Report.setEnabled(true);
+            m.jTable1.setEnabled(true);
+            
+                    
+                    
+          // m.jButton3.setEnabled(false);
+            //m.jButton1.setEnabled(false);
+            
+            
+            m.setVisible(true);
+            setVisible(true);
+             dispose();
+       
+            
+            } 
+            else{
+                
+                    JOptionPane.showMessageDialog(null,"Wrong Username or Password", "Access Denied",JOptionPane.ERROR_MESSAGE);
+                
+                }
+            
+           }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+           }
+        }
+        
+        // Priviledge for Record Officer
+          else if(Choise.equalsIgnoreCase("cashier")){
+       String sql="SELECT * FROM  `user accounts` WHERE  `USERNAME` LIKE  '"+UName+"' AND `POSITION` LIKE  'cashier' AND  `Password` =  '"+Pswd+"'";
+      
+           try { 
+            Connection con=(Connection) DriverManager.getConnection(url,"root","");
+            PreparedStatement pst=con.prepareStatement(sql);
+            ResultSet rs=pst.executeQuery();
+            if(rs.next()){
+               byte[] Image=rs.getBytes("IMAGE");
+               String name=rs.getString("USERNAME");
+               String pos=rs.getString("POSITION");
+            dispose();
+       // new MainHomePage(Image,name,pos).setVisible(true);
+           // new MainHomePage(Image,name,pos).Manage_Users.setEnabled(false);
+            
+            MainHomePage m = new MainHomePage(Image,name,pos);
+            m.RegStudent.setEnabled(true);
+            m.paymentButtonHome.setEnabled(true);
+            m.Generate_btn_in_Report.setEnabled(false);
+            m.Admin_Home.setEnabled(false);
+            m.profileButton.setEnabled(false);
+            m.auditButton.setEnabled(false);
+            m.backupButton.setEnabled(true);
+            m.aboutButton.setEnabled(true);
+            m.Print_btn_in_Report.setEnabled(false);
+            m.jTable1.setEnabled(false);
+        
+             m.setVisible(true);
+            setVisible(true);
+             dispose();
+            
+            } 
+            else{
+                
+                    JOptionPane.showMessageDialog(null,"Wrong Username or Password", "Access Denied",JOptionPane.ERROR_MESSAGE);
+                
+                }
+            
+           }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+                    }
+          }
+        
+       
+
+        
+    }//GEN-LAST:event_Login_btnActionPerformed
+
+    private void txt_comboPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_txt_comboPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_comboPopupMenuWillBecomeInvisible
+
+    private void txt_comboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_comboMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_comboMouseClicked
+
+    private void txt_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_comboActionPerformed
+
+    private void jLabel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MousePressed
+        // TODO add your handling code here:
+        forgetPass_Panel.setVisible(true);
+        txt_Post.setEnabled(true);
+        security_qusetion_txt.setEnabled(true);
+        txt_answer.setEnabled(true);
+        your_Pass.setEnabled(true);
+        btn_Srch.setEnabled(true);
+        btn_retrieve.setEnabled(true);
+         txt_uname_f.setEnabled(true);
+    }//GEN-LAST:event_jLabel5MousePressed
+
+    private void txt_uname_fActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_uname_fActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_uname_fActionPerformed
+
+    private void security_qusetion_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_security_qusetion_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_security_qusetion_txtActionPerformed
+
+    private void btn_SrchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SrchActionPerformed
+        // TODO add your handling code here:
+        
+        Search();
+        
+        
+    }//GEN-LAST:event_btn_SrchActionPerformed
+
+    private void btn_retrieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_retrieveActionPerformed
+        // TODO add your handling code here:
+        
+        Retrieve();
+    }//GEN-LAST:event_btn_retrieveActionPerformed
+
+    private void txt_answerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_answerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_answerActionPerformed
+
+    private void Login_btnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Login_btnKeyPressed
+       
+       
+        
+        
+        
+    }//GEN-LAST:event_Login_btnKeyPressed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+
+            
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                 try {
+                   
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+                
+                Properties props = new Properties();
+                props.put("logoString", "my company");
+                HiFiLookAndFeel.setCurrentTheme(props);
+                
+               //UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
+                //UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+               //UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+               //UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+              //UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");     // vala ase
+               UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+               // UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+               //  UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+               //UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+              // UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+             // UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+            }   
+                   
+               } catch (Exception e) {
+                   
+                               
+               }
+                new Login().setVisible(true);
+            }
+        });
+    }
+
+    private void comboBox() {
+        try {
+            Connection con = (Connection) DriverManager.getConnection(url, "root", "");
+            String sql = "SELECT * FROM `user accounts`";
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("POSITION");
+                
+                txt_combo.addItem(name);
+               
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+  
+    public void Search() {
+        
+        try {
+            
+           String a1=txt_uname_f.getText();
+         String sql="select * from `user accounts` where `USERNAME`='"+a1+"'";
+        pst=conn.prepareStatement(sql);
+        rs=pst.executeQuery();
+       if(rs.next()) {
+	txt_Post.setText(rs.getString(6));
+        security_qusetion_txt.setText(rs.getString(8));
+        rs.close();
+        pst.close();
+       } else {
+            JOptionPane.showMessageDialog(null, "incorrect username");
+       }
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }
+    public void Retrieve (){
+        
+        
+        String a1=txt_uname_f.getText();
+        String a2=txt_answer.getText();
+       ///String sql="select * from `user accounts` where `answer`='"+a2+"'";
+        try {
+       String sql="select * from `user accounts` where `answer`='"+a2+"'";
+        pst=conn.prepareStatement(sql);
+        rs=pst.executeQuery();
+        if (rs.next()) {
+	your_Pass.setText(rs.getString(3));
+
+        }
+} catch(Exception e)
+{
+
+}
+        
+        
+    }
+    
+    
+    
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField Login_Password;
+    private javax.swing.JTextField Login_UserName;
+    private javax.swing.JButton Login_btn;
+    private javax.swing.JPanel Panel_for_Main_Login;
+    private javax.swing.JButton btn_Srch;
+    private javax.swing.JButton btn_retrieve;
+    private javax.swing.JPanel forgetPass_Panel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel label_for_logo;
+    private javax.swing.JTextField security_qusetion_txt;
+    private javax.swing.JTextField txt_Post;
+    private javax.swing.JTextField txt_answer;
+    private javax.swing.JComboBox<String> txt_combo;
+    private javax.swing.JTextField txt_uname_f;
+    private javax.swing.JTextField your_Pass;
+    // End of variables declaration//GEN-END:variables
+String UserName=null;
+String FileName=null;
+byte[] forImage=null;
+ImageIcon format=null;
+
+}
